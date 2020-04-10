@@ -412,7 +412,7 @@ void render(const Level &level)
                     // Determine what colour the box should be.
                     // If the box is on a goal, draw it in green
                     // to differentiate it from other boxes.
-                    if(level.map[y][x].isGoal && level.map[y][x].hasBox)
+                    if(level.map[y][x].isGoal)
                     {
                         SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0xFF);
                     }
