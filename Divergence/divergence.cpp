@@ -43,7 +43,7 @@ struct Point
 struct Cell
 {
     int type;
-    bool isGoal, hasBox, onGoal;
+    bool isGoal, hasBox;
 };
 
 struct Level
@@ -381,18 +381,10 @@ bool moveBox(int direction, const Point &src, Level &level)
         level.map[dest.y][dest.x].hasBox = true;
 
         // Increment remaining goals if the box was pushed off a goal.
-        if(level.map[src.y][src.x].isGoal)
-        {
-            level.map[src.y][src.x].onGoal = false;
-            level.goals++;
-        }
+        if(level.map[src.y][src.x].isGoal) level.goals++;
 
         // Decrement remaining goals if the box was pushed onto a goal.
-        if(level.map[dest.y][dest.x].isGoal)
-        {
-            level.map[dest.y][dest.x].onGoal = true;
-            level.goals--;
-        }
+        if(level.map[dest.y][dest.x].isGoal) level.goals--;
 
         return true;
     }
@@ -420,7 +412,7 @@ void render(const Level &level)
                     // Determine what colour the box should be.
                     // If the box is on a goal, draw it in green
                     // to differentiate it from other boxes.
-                    if(level.map[y][x].onGoal)
+                    if(level.map[y][x].isGoal && level.map[y][x].hasBox)
                     {
                         SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0xFF);
                     }
