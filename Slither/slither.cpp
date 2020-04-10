@@ -1,6 +1,6 @@
 /*
  * Slither (a Snake clone)
- * Copyright (C) 2020 Guywan
+ * Copyright (C) 2020 Czespo
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
