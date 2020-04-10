@@ -150,7 +150,6 @@ int main(int argc, char* args[])
                                 if(++curLevel < levels.size())
                                 {
                                     level = loadLevel(levels[curLevel]);
-                                    complete = false;
                                     render(level);
                                 }
                                 else
@@ -197,6 +196,7 @@ bool initLevels()
         {
             if(line.compare(",") == 0)
             {
+                level.pop_back();
                 levels.push_back(level);
                 level = "";
             }
@@ -234,7 +234,7 @@ bool init()
         if(window == NULL)
         {
             printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-            
+
             SDL_Quit();
         }
         else
@@ -316,7 +316,7 @@ Level loadLevel(const std::string &def)
     }
 
     level.width = width;
-    level.height = height;
+    level.height = ++height;
 
     // Determine cellSize based on level and window dimensions.
     // Allows the drawn map to scale to the window size.
